@@ -44,9 +44,18 @@ impl TodoList {
         TodoList { tasks: Vec::new() }
     }
 
-    pub fn add_task(&mut self, description: String, due_time: Option<String>) {
+    pub fn new_task(&mut self, description: String, due_time: Option<String>) {
         let task = Task::new(description, due_time);
         self.tasks.push(task);
+    }
+
+    pub fn complete_task(&mut self, index: usize) {
+        if let Some(task) = self.tasks.get_mut(index) {
+            task.complete();
+            println!("Tarea marcada como completada: {}", task);
+        } else {
+            println!("Índice de tarea no válido.");
+        }
     }
 
     pub fn display_tasks(&self) {
