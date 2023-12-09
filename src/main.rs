@@ -51,6 +51,19 @@ fn main() {
                     println!("Índice no válido. Inténtelo de nuevo.");
                 }
             }
+            "4" => {
+                println!("Ingrese el número de la tarea que desea eliminar:");
+                let mut index_input = String::new();
+                io::stdin()
+                    .read_line(&mut index_input)
+                    .expect("Error al leer el índice de la tarea");
+        
+                if let Ok(index) = index_input.trim().parse::<usize>() {
+                    todo_list.delete_task(index - 1);
+                } else {
+                    println!("Índice no válido. Inténtelo de nuevo.");
+                }
+            }
             "q" => {
                 println!("Saliendo del programa.");
                 break;
@@ -67,6 +80,7 @@ fn print_menu() {
     println!("1. Agregar tarea");
     println!("2. Mostrar tareas");
     println!("3. Marcar tarea como completada");
+    println!("4. Eliminar tarea");
     println!("q. Salir");
     print!("Seleccione una opción: ");
     io::stdout().flush().unwrap();

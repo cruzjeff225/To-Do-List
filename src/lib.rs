@@ -58,6 +58,15 @@ impl TodoList {
         }
     }
 
+    pub fn delete_task(&mut self, index: usize) {
+        if index < self.tasks.len() {
+            let removed_task = self.tasks.remove(index);
+            println!("Tarea eliminada: {}", removed_task);
+        } else {
+            println!("Índice de tarea no válido.");
+        }
+    }
+
     pub fn display_tasks(&self) {
         if self.tasks.is_empty() {
             println!("No hay tareas pendientes.");
