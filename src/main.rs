@@ -25,14 +25,14 @@ fn main() {
                 let mut task_input = String::new();
                 io::stdin().read_line(&mut task_input).expect("Error al leer la tarea");
 
-                println!("¿Tiene una hora límite para completar la tarea? (S/N)");
+                println!("¿Tienes una hora límite para completar la tarea? (S/N)");
                 let mut time_limit = String::new();
                 io::stdin()
                     .read_line(&mut time_limit)
                     .expect("Error al leer la entrada");
 
                 let due_time = if time_limit.trim().to_lowercase() == "s" {
-                    println!("Ingrese la hora límite (por ejemplo, '14:30'): ");
+                    println!("Ingresa la hora límite (por ejemplo, '10:30'): ");
                     let mut time_limit_input = String::new();
                     io::stdin()
                         .read_line(&mut time_limit_input)
@@ -61,7 +61,7 @@ fn main() {
                     print_progress(&todo_list);
                     check_completion(&todo_list);
                 } else {
-                    println!("Índice no válido. Inténtelo de nuevo.");
+                    println!("Índice no válido. Inténtalo de nuevo.");
                 }
             }
             "4" => {
@@ -77,7 +77,7 @@ fn main() {
                     print_progress(&todo_list);
                     check_completion(&todo_list);
                 } else {
-                    println!("Índice no válido. Inténtelo de nuevo.");
+                    println!("Índice no válido. Inténtalo de nuevo.");
                 }
             }
             "5" => {
@@ -91,7 +91,7 @@ fn main() {
             }
             _ => {
                 // Opción no válida
-                println!("Opción no válida. Inténtelo de nuevo.");
+                println!("Opción no válida. Inténtalo de nuevo.");
             }
         }
     }
@@ -112,8 +112,8 @@ fn print_menu() {
     println!("3. Marcar Tarea como Completada");
     println!("4. Eliminar Tarea");
     println!("5. Recompensas");
-    println!("q. Salir");
-    print!("Seleccione una opción: ");
+    println!("x. Salir");
+    print!("Selecciona una opción: ");
     io::stdout().flush().unwrap();
 }
 
