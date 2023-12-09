@@ -1,15 +1,19 @@
+// Importando biblioteca fmt
 use std::fmt;
 
+// Definiendo la estructura TodoList
 pub struct TodoList {
     tasks: Vec<Task>,
+
 }
 
+// Definiendo la estructura Task
 pub struct Task {
     description: String,
     due_time: Option<String>,
     completed: bool,
 }
-
+// Implementación de metódos
 impl Task {
     pub fn new(description: String, due_time: Option<String>) -> Self {
         Task {
@@ -29,7 +33,7 @@ impl fmt::Display for Task {
         write!(
             f,
             "{} - {}",
-            if self.completed { "[✔]" } else { "[ ]" },
+            if self.completed { "✅" } else { "[ ]" },
             self.description
         )?;
         if let Some(due_time) = &self.due_time {
@@ -38,17 +42,18 @@ impl fmt::Display for Task {
         Ok(())
     }
 }
-
+// Implementación de métodos
 impl TodoList {
+    // Crear nueva lista de tareas
     pub fn new() -> Self {
         TodoList { tasks: Vec::new() }
     }
-
+    // Metódo que agrega una nueva tarea a la lista
     pub fn new_task(&mut self, description: String, due_time: Option<String>) {
         let task = Task::new(description, due_time);
         self.tasks.push(task);
     }
-
+    // Metodo que completa tareas de la lista
     pub fn complete_task(&mut self, index: usize) {
         if let Some(task) = self.tasks.get_mut(index) {
             task.complete();
@@ -57,7 +62,7 @@ impl TodoList {
             println!("Índice de tarea no válido.");
         }
     }
-
+    // Metodo que elimina una tarea de la lista
     pub fn delete_task(&mut self, index: usize) {
         if index < self.tasks.len() {
             let removed_task = self.tasks.remove(index);
@@ -66,8 +71,8 @@ impl TodoList {
             println!("Índice de tarea no válido.");
         }
     }
-
-    pub fn display_tasks(&self) {
+    // Metódo que muestra las tareas pendientes
+    pub fn show_task(&self) {
         if self.tasks.is_empty() {
             println!("No hay tareas pendientes.");
         } else {
@@ -77,4 +82,18 @@ impl TodoList {
             }
         }
     }
+    // Métodos para obtener el número de tareas completadas y el total de tareas
+    pub fn completed_tasks(&self) -> usize {
+        self.tasks.iter().filter(|task| task.completed).count()
+    }
+
+    pub fn total_tasks(&self) -> usize {
+        self.tasks.len()
+    }
+    // Método para verificar si todas las tareas están completadas
+    pub fn is_completed(&self) -> bool {
+        self.tasks.iter().all(|task| task.completed)
+    }
 }
+
+
